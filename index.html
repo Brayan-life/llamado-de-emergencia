@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Llamado de Emergencia</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 36px;
+      color: #ff3c00;
+    }
+    #reloj {
+      font-size: 48px;
+      margin: 20px 0;
+      color: #00ffcc;
+    }
+    .mensaje {
+      font-size: 24px;
+      margin: 30px 0;
+      color: #fff;
+    }
+    .arma-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 30px;
+    }
+    .bala {
+      position: absolute;
+      top: 30%;
+      left: 100%;
+      transform: translateX(10px);
+      font-size: 18px;
+      color: #ff0;
+      white-space: nowrap;
+    }
+    img {
+      width: 200px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Llamado de Emergencia</h1>
+
+  <div id="reloj">00:00:00</div>
+
+  <div class="mensaje">
+    "Hola mi estimado, es hora de volver a la causa"
+  </div>
+
+  <div class="arma-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Pistol_icon.png" alt="arma">
+    <div class="bala">Tu compañero de batalla: Brayan</div>
+  </div>
+
+  <script>
+    function actualizarReloj() {
+      const ahora = new Date();
+      const hora = ahora.toLocaleTimeString();
+      document.getElementById("reloj").textContent = hora;
+    }
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
+  </script>
+
+</body>
+</html>
