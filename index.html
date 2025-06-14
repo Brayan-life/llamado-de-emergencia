@@ -5,25 +5,21 @@
   <title>Llamado de Emergencia</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
-      padding: 40px;
-    }
-    h1 {
-      font-size: 36px;
-      color: #ff3c00;
+      background: url('https://citypng.com/public/uploads/preview/black-garena-dragon-logo-symbol-icon-png-3012x3012.png') no-repeat center center fixed;
+      background-size: cover;
     }
     #reloj {
-      font-size: 48px;
-      margin: 20px 0;
-      color: #00ffcc;
+      font-size: 2em;
+      margin: 10px 0;
     }
     .mensaje {
-      font-size: 24px;
-      margin: 30px 0;
-      color: #fff;
+      margin: 20px 0;
+      font-size: 1.2em;
     }
     .arma-container {
       position: relative;
@@ -32,43 +28,64 @@
     }
     .bala {
       position: absolute;
-      top: 30%;
-      left: 100%;
-      transform: translateX(10px);
+      top: 50%;
+      left: 120px;
       font-size: 18px;
       color: #ff0;
       white-space: nowrap;
+      animation: disparo 1.5s linear forwards;
+    }
+    @keyframes disparo {
+      0% { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(600px); opacity: 0; }
     }
     img {
-      width: 200px;
+      width: 100px;
       height: auto;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
   <h1>Llamado de Emergencia</h1>
 
-  <div id="reloj">00:00:00</div>
+  <div id="reloj"></div>
 
   <div class="mensaje">
     "Hola mi estimado, es hora de volver a la causa"
   </div>
 
   <div class="arma-container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Pistol_icon.png" alt="arma">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Pistol_gun_icon.svg" alt="arma">
     <div class="bala">Tu compañero de batalla: Brayan</div>
   </div>
 
+  <button onclick="disparar()">¡Disparar ahora!</button>
+
+  <audio id="sonidoDisparo" src="https://gfxsounds.com/wp-content/uploads/2025/02/HK416-single-shot.mp3"></audio>
+
   <script>
+    // Reloj en vivo
     function actualizarReloj() {
-      const ahora = new Date();
-      const hora = ahora.toLocaleTimeString();
-      document.getElementById("reloj").textContent = hora;
+      document.getElementById("reloj").textContent = new Date().toLocaleTimeString();
     }
     setInterval(actualizarReloj, 1000);
     actualizarReloj();
-  </script>
 
+    // Disparar: animación + sonido
+    function disparar() {
+      const bala = document.querySelector('.bala');
+      const audio = document.getElementById('sonidoDisparo');
+      bala.style.animation = 'none';
+      void bala.offsetWidth; // reinicia la animación
+      bala.style.animation = '';
+      audio.play().catch(console.log);
+    }
+  </script>
 </body>
 </html>
